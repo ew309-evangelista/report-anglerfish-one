@@ -1,0 +1,14 @@
+﻿The turret needs to run two motors in the gun to properly fire. The mbed can put out small amounts of voltage and very low amounts of current. The motor requires much higher current and voltage than the mbed can supply. So, a firing circuit is used to control the  motors from the mbed, and provide the motors with the proper voltage and current.
+  
+
+Figure 1: Firing Circuit Schematic
+  
+
+Figure 2: Firing Circuit
+
+
+The pulldown resistor is to put a high resistance between the mbed pin and ground. This means that the transistor gate pin is not connected directly to ground, so the transistor will close when the mbed pin is high.
+The mbed is incapable of directly driving the motors, but is capable of controlling a mosfet on/off. So, the mosfet functions as a switch, controlled by the mbed, for the motor circuits, allowing the mbed to control otherwise oversized loads.
+A motor is a high inductance load. When the mosfet is off, the current produced by the inductive components of the motor needs some way to dissipate. The flyback diode and snubber allow for this induced current to disperse. 
+Statement of Contribution
+MIDN Malatesta created the first and third (backup) mosfet circuits. Midn Hendricks created the second by copying the first circuit. The overall contribution was roughly 60% Malatesta, 40% Hendricks.
