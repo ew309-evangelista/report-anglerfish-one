@@ -1,9 +1,0 @@
-﻿To determine the motor requirements, we first defined the desired response of the motor. Then, we computed a rough estimate of the moment of inertia using the mass and geometry of various parts of the turret system. This allowed us to determine what torque would be necessary to drive the motor according to our specifications. (put spreadsheet in appendix on overleaf).
-        We chose a motor that could fulfil all the desired requirements. Both motors on the decision tree met requirements, so to reduce costs, we chose the motor that exceeded the requisites by less. Our final choice of motor, the ______ is the one already employed in the turret, our decision simply confirmed this was the right choice. (Cannot access motor datasheets right now- had bookmarked the page but it’s on intranet).
-
-
-Motor torque, speed, and current information was all available from the data sheet on the robotics and controls website. (Currently unavailable, will create plots once get data).
-
-
-The turret motor is controlled by the mbed and a TD340 motor driver. The motor requires higher voltage and current than the mbed can supply, leading to the intermediary. The mbed supplies two signals, a digital out for direction, and a pwm signal for speed. We chose to use pwm from the mbed instead of analog out because the analog signal requires two conversions, increasing chances for error. The analog and digital speed control use two different input pins on the motor driver. A pulldown resistor had to be placed on the speed control pin to prevent the system actuating on startup. The connection to ground reduced the effect of noise on the system.
-D: To change the turret direction, the mbed digital out is changed from high to low. As this leads to the current through the motor being reversed, the turret behaves the same in both directions.

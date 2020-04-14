@@ -1,0 +1,32 @@
+﻿\section{Ballistics test procedure}
+
+\subsection{Prerequisites}
+Connect the turret to a \SI{12}{\volt} power supply. Ensure the firing functions of the turret are set to a pwm out of 0.75 to avoid damaging the motors. Establish a camera feed from the iCubie. Place crosshairs through the center of the image. The measurement of shot placement will be measured from the crosshairs in terms of pixels.
+
+\subsection{Test procedure}
+\begin{enumerate}
+\item Testing will occur at three ranges, 7.5, 15, and 20 feet from the target. 
+
+\item The turret will be aimed directly at a blackboard covered in chalk with a small extra dark dot used to consistently aim the weapon. The turret will be aimed at this dot by using the camera feedback, lining up the crosshairs with the dot at the center of the chalk.
+
+\item The ranging will be done in three sets of five shots at every distance. Shots will be triggered from the terminal. Between shots, the alignment of the turret will be double checked. The following firing code is used:
+%Firing Code
+%#include "mbed.h"
+%Serial pc(USBTX, USBRX);
+%PwmOut feed(p21),shoot(p22);
+%int main() {
+%shoot=.75;
+%    pc.getc();
+%    while(1) 
+%    {
+%       
+%       feed=.75;
+%       wait(.25);
+%       feed=0;
+%       pc.getc();
+%    }
+
+\item Measurements from the dot to the marks left by the shots fired will be compared to the output of the pixels to inches function to ensure the accuracy of the processing done on the computer. 
+
+\item The average location of the shot for each run for each distance will be calculated, as well as the average spreading of the shots. If any of the runs for the different ranges differs wildly from the others, the test will be repeated for that range to ensure that no outliers are included. From this data, a circle of probable hit locations can be plotted for the various distances. The drop and spread relation to distance can be turned into a function, and used to plot a CEP at distances other than the ones measured.
+\end{enumerate}
