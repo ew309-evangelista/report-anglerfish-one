@@ -1,7 +1,13 @@
 ﻿\subsection{Controller design}
 
-Block Diagram
+\begin{figure}
+    \begin{center}  
+    %\includegraphics{}    
+    \end{center}
+    \caption{Block diagram}
+    \label{fig:controller1}
+\end{figure}
 
 We found the most important part of our design to be having zero steady state error, being able to aim confidently down a certain sighting. So, we determined our controller would have an integrator term. We decided our system must have under 5\% peak overshoot, and must have rise time of under \SI{0.5}{\second}, to ensure the system can quickly aim down a bearing very close to the actual target.
 
-% Needs more 
+A PID controller was decided upon, to get initial gain values, $\omega_n$ and $\zeta$ were solved for using our desired transient response. From here gains were adjusted and tested with the stepinfo function until a desirable control response was reached. The control algorithm is as follows:
