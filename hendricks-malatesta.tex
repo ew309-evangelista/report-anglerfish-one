@@ -7,21 +7,36 @@
 \usepackage{siunitx}
 \usepackage{graphicx}
 \bibliographystyle{IEEEtran}
-
+% Evangelista note: need to add in amsmath etc, listings for code, and hyperref for links and urls. 
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
 The system must autonomously scan for, identify, and track discrete targets. Once a target is identified, the turret must center itself on target and, if the turret has a reasonable chance to hit the target, fire. The system must be able to distinguish between valid targets and those that should not be fired upon, and operate accordingly..
+% suggestion guys the abstract would normally also say, as a quick summary, what all was achieved in the end. For this reason I often write
+% the abstract as the very last thing... 
 \end{abstract}
+
+{\scriptsize \textbf{Keywords:} anglerfish, lophiiformes, buccal pumping, epibenthic, biomechanics, evolution}
+% these are often used for automatic indexing and retrieval... fill in ones that make sense for you. 
 
 \section{Introduction}
 Test citation here \cite{buck2020go}.
+\subsection{Problem statement}
+Fill this in... 
 
-\input{background-research.tex}
+% this next one should be the benchmarking, and wants to end with a table or something summarizing/comparing the existing design to your desired design
+\input{background-research.tex} % If you prefer you can split your report into smaller files and input them this way... 
+
+\subsection{Target design specifications}
+Fill this in... this sets up what you are trying to achieve with your design. 
+
 
 \section{System design}
+\subsection{Functional block diagram}
+Before launching into detailed technical discussions of each piece I would start with an overall broad brush picture of how it should work, establishing for the reader how each of the parts you will be discussing fits in the whole... I would most definitely add pictures here. 
+
 \input{computer-vision.tex}
 \input{firing-circuit.tex}
 \input{turret-subsection.tex}
@@ -29,9 +44,23 @@ Test citation here \cite{buck2020go}.
 \input{ballistics.tex}
 
 \section{Final system integration and testing}
+\subsection{Virtual turret system}
+\subsection{Computer vision in virtual turret system}
+\subsection{Closed-loop position control of virtual turret}
+\subsection{Ballistics-based calculation of number of shots}
+\subsection{Performance measures for virtual turret system}
+
 \section{Results}
+\subsection{Computer vision in virtual turret system}
+\subsection{Closed-loop position control of virtual turret}
+\subsection{Ballistics-based calculation of number of shots}
+\subsection{Performance measures for virtual turret system}
+
 \section{Discussion}
+What big things did you learn? 
+
 \section{Acknowledgements}
+We thank (some people)...
 
 % references here
 \bibliography{hendricks-malatesta.bib}
