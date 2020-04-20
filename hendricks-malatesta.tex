@@ -7,7 +7,22 @@
 \usepackage{siunitx}
 \usepackage{graphicx}
 \bibliographystyle{IEEEtran}
-% Evangelista note: need to add in amsmath etc, listings for code, and hyperref for links and urls. 
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{listings}
+\lstset{%
+    basicstyle=\small\ttfamily,
+    columns=fullflexible,
+    showstringspaces=false}
+\usepackage{hyperref}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\hypersetup{%
+    colorlinks=true,
+    linkcolor=violet,
+    urlcolor=blue,
+    citecolor=blue}
+\usepackage{booktabs}
+\usepackage[plain]{fancyref}
+\newcommand{\Matlab}{Matlab}
 
 \begin{document}
 \maketitle

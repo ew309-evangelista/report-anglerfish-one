@@ -1,7 +1,8 @@
 ﻿\section{Ballistics test procedure}
+\label{app:A}
 
 \subsection{Prerequisites}
-Connect the turret to a \SI{12}{\volt} power supply. Ensure the firing functions of the turret are set to a pwm out of 0.75 to avoid damaging the motors. Establish a camera feed from the iCubie. Place crosshairs through the center of the image. The measurement of shot placement will be measured from the crosshairs in terms of pixels.
+Connect the turret to a \SI{12}{\volt} power supply. Ensure the firing functions of the turret are set to a \lstinline{PwmOut} of 0.75 to avoid damaging the motors. Establish a camera feed from the iCubie. Place crosshairs through the center of the image. The measurement of shot placement will be measured from the crosshairs in terms of pixels.
 
 \subsection{Test procedure}
 \begin{enumerate}
@@ -10,21 +11,22 @@ Connect the turret to a \SI{12}{\volt} power supply. Ensure the firing functions
 \item The turret will be aimed directly at a blackboard covered in chalk with a small extra dark dot used to consistently aim the weapon. The turret will be aimed at this dot by using the camera feedback, lining up the crosshairs with the dot at the center of the chalk.
 
 \item The ranging will be done in three sets of five shots at every distance. Shots will be triggered from the terminal. Between shots, the alignment of the turret will be double checked. The following firing code is used:
-%Firing Code
-%#include "mbed.h"
-%Serial pc(USBTX, USBRX);
-%PwmOut feed(p21),shoot(p22);
-%int main() {
-%shoot=.75;
-%    pc.getc();
-%    while(1) 
-%    {
-%       
-%       feed=.75;
-%       wait(.25);
-%       feed=0;
-%       pc.getc();
-%    }
+\begin{lstlisting}
+#include "mbed.h"
+Serial pc(USBTX, USBRX);
+PwmOut feed(p21),shoot(p22);
+int main() {
+shoot=.75;
+    pc.getc();
+    while(1) 
+    {
+       
+       feed=.75;
+       wait(.25);
+       feed=0;
+       pc.getc();
+    }
+\end{lstlisting}
 
 \item Measurements from the dot to the marks left by the shots fired will be compared to the output of the pixels to inches function to ensure the accuracy of the processing done on the computer. 
 

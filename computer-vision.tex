@@ -9,14 +9,14 @@ Camera mount
 % This part explains software processing steps; should go with a block diagram
 To get an image into matlab, we initialized a usb webcam, then pulled the color data from a frame taken by the camera. Every loop of the program, we pull a new image, display its color data, and pass that color data on to our thresholding function.
 
-Once an image is acquired by matlab, its color data is sent to our thresholding function. From here, a mask is created, marking all pixels with the right color data (orange tones) as ones, and all other pixels black. From here, we fill any small holes that may exist inside of larger swathes of the correct color. Then, all connected regions above a constant minimum area are labelled, and their properties recorded (centroid,area, eccentricity). 
+Once an image is acquired by \Matlab, its color data is sent to our thresholding function. From here, a mask is created, marking all pixels with the right color data (orange tones) as ones, and all other pixels black. From here, we fill any small holes that may exist inside of larger swathes of the correct color. Then, all connected regions above a constant minimum area are labelled, and their properties recorded (centroid,area, eccentricity). 
 
 % This part deals with how you know you got a good detection
 The image processing procedure checks the size and shape of all areas with the proper color profiles. If potential targets are outside the bounds we have placed on area, or are too irregularly shaped (the desired targets are circles), the script drops them from the list of desired targets. For now we simply target the first viable target on the list. We are considering switching to focusing on the target closest to the center of the frame, as we are unsure if our current method will lead to oscillation between multiple targets.
 
 To ensure the target acquisition works for multiple targets, we tried using a couple different orange circles to make sure they all got picked up by the acquisition software. 
 
-maxArea, minArea, and maxEcc constants need to be fine tuned in the future. Once a rough range of the target is known, we can adjust the area constants to reflect this range. For now we have filler values of minArea=50, maxArea=7500, and maxEcc=0.75.
+\lstinline{maxArea}, \lstinline{minArea}, and \lstinline{maxEcc} constants need to be fine tuned in the future. Once a rough range of the target is known, we can adjust the area constants to reflect this range. For now we have filler values of \lstinline{minArea=50}, \lstinline{maxArea=7500}, and \lstinline{maxEcc=0.75}.
 
 % Ok to leave these bits as comments. 
 %Midn Malatesta and Hendricks both developed their own acquisition scripts. Midn Malatesta took charge of the color/image processing. Midn Hendricks took charge of the range calibration.
