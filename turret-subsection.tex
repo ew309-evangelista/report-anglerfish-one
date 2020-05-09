@@ -8,10 +8,32 @@ We chose a motor that could fulfil all the desired requirements. Both motors on 
 Motor torque, speed, and current information was all available from the data sheet on the robotics and controls website. (Currently unavailable, will create plots once get data).
 
 The turret motor is controlled by the mbed and a TD340 motor driver. The motor requires higher voltage and current than the mbed can supply, leading to the intermediary. The mbed supplies two signals, a digital out for direction, and a pwm signal for speed. We chose to use pwm from the mbed instead of analog out because the analog signal requires two conversions, increasing chances for error. The analog and digital speed control use two different input pins on the motor driver. A pulldown resistor had to be placed on the speed control pin to prevent the system actuating on startup. The connection to ground reduced the effect of noise on the system.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=.4]{pos mot data.png}
+    \caption{Positive Motion Data}
+    \label{fig:pos mot}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=.4]{neg mot data.png}
+    \caption{Negative Motion Data}
+    \label{fig:neg mot data}
+\end{figure}
+D: To change the turret direction, the mbed digital out is changed from high to low. While the turret has the same internal mechanics both directions, the difference in signs leads to two separate transfer functions and models. Positive rotation: 5.9169/(s+0.4674) (s+0.01372) 
+Negative rotation: 0.89934/(s+0.02155) (s+0.0289)
 
-D: To change the turret direction, the mbed digital out is changed from high to low. While the turret has the same internal mechanics both directions, the difference in signs leads to two separate transfer functions and models. Positive rotation:          5.9169
-                               ----------------------
-                               (s+0.4674) (s+0.01372) 
-        Negative rotation:       0.89934
-                            ----------------------
-                             (s+0.02155) (s+0.0289)
+ \begin{figure}[h!]
+     \centering
+     \includegraphics[scale=.3]{tfPos.jpg}
+     \caption{Turret's Positive Transfer Function}
+     \label{fig:postf}
+ \end{figure}
+ \begin{figure}[h!]
+     \centering
+     \includegraphics[scale=.3]{tfNeg.jpg}
+     \caption{Turret's Negative Transfer Function }
+     \label{fig:negtf}
+ \end{figure}                             
+                          
+ 

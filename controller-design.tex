@@ -1,6 +1,7 @@
-﻿\subsection{Controller design}
 
-\begin{figure}
+﻿\subsection{Controller design}
+ 
+\begin{figure}[h!]
     \begin{center}  
     \includegraphics[width=\columnwidth]{block-diagram.png}    
     \end{center}
@@ -14,3 +15,16 @@ A PID controller was decided upon, to get initial gain values, $\omega_n$ and $\
 Positive Rotation: Kp=3 Ki=1   Kd=3
 Negative Rotation: Kp=6 Ki=0.5 Kd=12.2
 The response in both directions can be seen by the following simulations:
+
+\begin{figure}[h!]
+\centering
+    \includegraphics[scale=.4]{posPID.jpg}
+    \caption{ Positive PID Transfer Function}
+    \label{fig:pos responce}
+\end{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=.4]{negPid.jpg}
+    \caption{Negative PID Transfer Function}
+    \label{fig:neg responce}
+\end{figure}
