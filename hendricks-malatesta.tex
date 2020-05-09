@@ -28,16 +28,15 @@
 \maketitle
 
 \begin{abstract}
-The system must autonomously scan for, identify, and track discrete targets. Once a target is identified, the turret must center itself on target and, if the turret has a reasonable chance to hit the target, fire. The system must be able to distinguish between valid targets and those that should not be fired upon, and operate accordingly..
+The system must autonomously scan for, identify, and track discrete targets. Once a target is identified, the turret must center itself on target and, if the turret has a reasonable chance to hit the target, fire. The system must be able to distinguish between valid targets and those that should not be fired upon, and operate accordingly. Though the actual hardware turret was never completed due to global pandemic, a simulated turret was created that could identify and aim at an orange target. The system would calculate the number of shots required to give a certain likelihood of hitting the target, then fire.
 % suggestion guys the abstract would normally also say, as a quick summary, what all was achieved in the end. For this reason I often write
 % the abstract as the very last thing... 
 \end{abstract}
 
-{\scriptsize \textbf{Keywords:} anglerfish, lophiiformes, buccal pumping, epibenthic, biomechanics, evolution}
+{\scriptsize \textbf{Keywords:} computer vision, ballistics, transfer function}
 % these are often used for automatic indexing and retrieval... fill in ones that make sense for you. 
 
 \section{Introduction}
-Test citation here \cite{buck2020go}.
 \subsection{Problem statement}
 The purpose of EW309 Guided Design is to simulate a capstone project, with extra help to become familiar with the process. The design goal of the class was to create a turret capable of detecting and engaging specific targets with the given constraints. 
 
@@ -50,7 +49,14 @@ The design was created to detect orange circular targets, and using negative fee
 
 \section{System design}
 \subsection{Functional block diagram}
-Before launching into detailed technical discussions of each piece I would start with an overall broad brush picture of how it should work, establishing for the reader how each of the parts you will be discussing fits in the whole... I would most definitely add pictures here. 
+\begin{figure}
+    \centering
+    \includegraphics[height=5cm width=4cm]{overall block diagram.JPG}
+    \caption{Functional Block Diagram}
+    \label{fig:fun diagr}
+\end{figure}
+The system was designed to find a designated target then a line the turret to said target and fire a bullet. It does this by using computer vision to isolate the target from surrounding and locate it in reference to the center of the turret. Once the target is acquired a voltage is sent to the turret based transfer function that was created to control it's movement.Once the turret reaches a steady state on the target it will determine whether it can hit the target. If it is possible for the turret to hit the target it will then begin to fire a set number of shots at the target. 
+ 
 
 \input{computer-vision.tex}
 \input{firing-circuit.tex}
@@ -60,26 +66,39 @@ Before launching into detailed technical discussions of each piece I would start
 
 \section{Final system integration and testing}
 \subsection{Virtual turret system}
+The outbreak of covid-19 forced the turret project to become a simulation instead of taking place in person. The following describes how the project was translated to a virtual environment.
 \subsection{Computer vision in virtual turret system}
+The simulation presents an image of the EW309 classroom and places a target at a random x position. This replaced the image aquisition function from the real turret. Once the image was passed to the system, the computer vision process was completely the same: the image was passed to target acquisition, and its position data was calculated and sent to the turret controls.
 \subsection{Closed-loop position control of virtual turret}
+Simulation had a built in function for position control of the turret. All that needed to be supplied were closed loop gains for the system to use. The PID gains for both positive and negative rotation were passed to the system, and the gains are chosen by the desired anglular change.
 \subsection{Ballistics-based calculation of number of shots}
+The ballistics in the simulated turret were treated just like the real turret. To calculate the number of shots, the desired likliehood of hitting the target, target range and radius all had to be inputed. From here, the trends from ballistics analysis were used to find the CEP of the given target size at the range, and this probability was used to calculate the number of shots needed to engage the target.
 \subsection{Performance measures for virtual turret system}
-
+The virtual turret shows shot placement upon running. This makes determining how many shots impacted the target, and allows for easy measurement of the turrets success. 
 \section{Results}
 \subsection{Computer vision in virtual turret system}
-\subsection{Closed-loop position control of virtual turret}
-\subsection{Ballistics-based calculation of number of shots}
-\subsection{Performance measures for virtual turret system}
+The system was able to identify the target in the virtual environment without fail, always finding the target and parsing its centroidal location.
 
+
+\subsection{Closed-loop position control of virtual turret}
+The system was able to consistently center the point of aim on target, adjusted for xbias.
+\subsection{Ballistics-based calculation of number of shots}
+The system varied the number of shots according to the target size and range, increasing the shot count as the target became smaller and further away.
+\subsection{Performance measures for virtual turret system}
+The simulation was run several times at various ranges, and managed to land at least one shot for most of the trials. Out of 20 trials, 19 resulted in engaging the target, which is a 95 percent success rate, higher than the coded 90 percent probability of hitting the target. The shots tended to the right of the target, future work should be done to have them more centered.
+\includegraphics[height=5cm width=4cm]{comp vis simul.JPG}
+ \caption{Simulated Target Detected and Engaged}
 \section{Discussion}
-What big things did you learn? 
+This project led to greater understanding of how to effectively incorporate a camera into matlab and basic computer vision processing. Also covered was how statistical analysis can be used to more effectively design engineering solutions, how to efficiently select components to meet a projects requirements, and basic digital to analog conversions.
 
 \section{Acknowledgements}
-We thank (some people)...
+This project would not have been able to be completed without the hard work of the professors in the Weapons, Robotics, and Control Engineering Department.  We are extremely grateful to Professor Evangelista who helped guide us throughout the project and was there to answer questions when needed. We'd also like to extend thanks to Professor Kutzer and the other Professors in the Department. Without their hard in creating the Turret simulation, we would not have been able to complete this project.
 
 % references here
 \bibliography{hendricks-malatesta.bib}
 
 \appendix
 \input{ballistics-test}
+\section{Repository}
+\url{https://github.com/ew309-evangelista/3-computer-vision-anglerfish-one.git}
 \end{document}
